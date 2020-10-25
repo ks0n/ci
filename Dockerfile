@@ -21,5 +21,5 @@ WORKDIR /home/notroot/
 RUN rm -r yay-bin
 
 
-RUN $pacman -S git meson ninja
+RUN $pacman -S meson ninja
 RUN $yay -S criterion

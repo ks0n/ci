@@ -11,7 +11,6 @@ RUN echo "notroot ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/notroot
 USER notroot
 WORKDIR /home/notroot
 
-
 # Install yay
 RUN $pacman -S git
 RUN git clone 'https://aur.archlinux.org/yay-bin.git'

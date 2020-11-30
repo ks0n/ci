@@ -1,7 +1,8 @@
 FROM archlinux:20200908
 
-ENV pacman="sudo pacman --noconfirm"
-ENV yay="yay --noconfirm"
+# Pacman and yay wrapper
+ENV pacman="sudo pacman -y --noconfirm"
+ENV yay="yay -y --noconfirm"
 
 # Create and log as notroot user for makepkg
 RUN pacman --noconfirm -Syy base-devel
@@ -20,6 +21,9 @@ RUN makepkg --noconfirm -si
 WORKDIR /home/notroot/
 RUN rm -r yay-bin
 
-
-RUN $pacman -S meson ninja
+# Install packages needed by the CI
+RUN $pacman -S meson ninja gcc clang
 RUN $yay -S criterion
+
+# Make us root again for Github Action
+USER root
